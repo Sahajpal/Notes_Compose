@@ -9,6 +9,6 @@ import com.example.notes_compose.feature_note.domain.model.Note
     version = 1
 )
 
-abstract  class NoteDatabase: RoomDatabase() {
+abstract class NoteDatabase : RoomDatabase() {
     abstract val noteDao: NoteDao
 }
