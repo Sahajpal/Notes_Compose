@@ -45,10 +45,10 @@ class AddEditNoteViewModel @Inject constructor(
 
     init {
         savedStateHandle.get<Int>("noteId")?.let { noteId ->
-            if(noteId != -1){
+            if (noteId != -1) {
                 viewModelScope.launch {
                     notesUseCases.getNote(noteId)?.also { note ->
-                        currentNoteId =note.id
+                        currentNoteId = note.id
                         _noteTitle.value = noteTitle.value.copy(
                             text = note.title,
                             isHintVisible = false
@@ -57,7 +57,7 @@ class AddEditNoteViewModel @Inject constructor(
                             text = note.content,
                             isHintVisible = false
                         )
-                        _noteColor.value =note.color
+                        _noteColor.value = note.color
                     }
                 }
             }
