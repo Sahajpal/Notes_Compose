@@ -19,6 +19,7 @@ import androidx.navigation.NavController
 import com.example.notes_compose.feature_note.presentation.notes.components.NoteItem
 import com.example.notes_compose.feature_note.presentation.notes.components.NotesViewModel
 import com.example.notes_compose.feature_note.presentation.notes.components.OrderSection
+import com.example.notes_compose.feature_note.presentation.util.Screen
 import kotlinx.coroutines.launch
 
 @Composable
@@ -33,7 +34,9 @@ fun NotesScreen(
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
-                onClick = {},
+                onClick = {
+                          navController.navigate(Screen.AddEditNoteScreen.route)
+                },
                 backgroundColor = MaterialTheme.colors.primary
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add Note")
@@ -88,7 +91,11 @@ fun NotesScreen(
                         note = note,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { },
+                            .clickable {
+                                       navController.navigate(
+                                           Screen.AddEditNoteScreen.route + "?noteId=${note.id}&noteColor=${note.color}"
+                                       )
+                            },
                         onDeleteClick = {
                             viewModel.onEvent(NotesEvent.DeleteNote(note))
                             scope.launch {
